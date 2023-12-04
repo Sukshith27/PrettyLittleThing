@@ -5,8 +5,6 @@ import {
 } from '../actions/productActions';
 
 interface Product {
-  // Define the product type
-  // Modify this based on the structure of your product data
   id: number;
   name: string;
   price: number;
