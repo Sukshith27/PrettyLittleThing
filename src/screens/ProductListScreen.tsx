@@ -5,7 +5,6 @@ const ProductListScreen: React.FC = () => {
   return (
     <View>
       <Text>Product List Screen</Text>
-      {/* Add your product list UI here */}
     </View>
   );
 };
