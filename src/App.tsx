@@ -13,7 +13,11 @@ const App: React.FC = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="ProductList">
-          <Stack.Screen name="ProductList" component={ProductListScreen} />
+          <Stack.Screen
+            name="ProductList"
+            component={ProductListScreen}
+            options={{headerShown: false}}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
