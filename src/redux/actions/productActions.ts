@@ -1,21 +1,37 @@
 // src/redux/actions/productActions.ts
 import {Dispatch} from 'redux';
 import axios from 'axios';
-import {
-  ProductActionTypes,
-  FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_FAILURE,
-} from '../types/productTypes';
+
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+}
+
+export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
+export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
+
+interface FetchProductsSuccessAction {
+  type: typeof FETCH_PRODUCTS_SUCCESS;
+  payload: Product[];
+}
+
+interface FetchProductsFailureAction {
+  type: typeof FETCH_PRODUCTS_FAILURE;
+  payload: string;
+}
+
+export type ProductActionTypes =
+  | FetchProductsSuccessAction
+  | FetchProductsFailureAction;
 
 export const fetchProducts = () => {
-  console.log('***====');
   return async (dispatch: Dispatch<ProductActionTypes>) => {
     try {
       const response = await axios.get(
-        'https://my-json-server.typicode.com/benirvingplt/products/products'
+        'https://my-json-server.typicode.com/benirvingplt/products/products',
       );
-      console.log('***', response);
-      console.log('***', response.data);
+      console.log('****', response.data);
       dispatch({type: FETCH_PRODUCTS_SUCCESS, payload: response.data});
     } catch (error) {
       dispatch({

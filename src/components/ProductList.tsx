@@ -8,8 +8,9 @@ import {fetchProducts} from '../redux/actions/productActions';
 
 const ProductList: React.FC = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state: RootState) => state.products.products);
-  console.log('products---', products);
+  const products = useSelector((state: typeof RootState) => state.products);
+  console.log('products---++', products);
+  console.log('products---', products.products);
 
   React.useEffect(() => {
     dispatch(fetchProducts());
@@ -23,7 +24,7 @@ const ProductList: React.FC = () => {
   );
 
   return (
-    <View style={{backgroundColor: "red"}}>
+    <View style={{backgroundColor: 'red'}}>
       <FlatList
         data={products}
         renderItem={renderItem}
