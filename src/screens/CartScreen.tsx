@@ -6,7 +6,7 @@ import {RootState} from '../redux/store';
 
 const CartScreen: React.FC = () => {
   // Assuming your cart state is stored in the Redux store under the 'cart' key
-  const cartItems = useSelector((state: typeof RootState) => state.cart);
+  const cartItems = useSelector((state: typeof RootState) => state.products);
   //   const products = useSelector((state: typeof RootState) => state.products);
   console.log('cartItems---', cartItems);
 

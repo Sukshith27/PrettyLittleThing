@@ -13,7 +13,7 @@ interface CartItem {
 }
 
 export interface CartState {
-  items: CartItem[];
+  products: CartItem[];
 }
 
 const initialState: CartState = {
@@ -28,14 +28,14 @@ const cartReducer = (
   console.log('***++==', action.payload);
   switch (action.type) {
     case ADD_TO_CART:
-      const existingItem = state.items.find(
+      const existingItem = state.products.find(
         item => item.id === action.payload.id,
       );
 
       if (existingItem) {
         return {
           ...state,
-          items: state.items.map(item =>
+          products: state.products.map(item =>
             item.id === action.payload.id
               ? {...item, quantity: item.quantity + action.payload.quantity}
               : item,
@@ -44,14 +44,14 @@ const cartReducer = (
       } else {
         return {
           ...state,
-          items: [...state.items, action.payload],
+          products: [...state.products, action.payload],
         };
       }
 
     case REMOVE_FROM_CART:
       return {
         ...state,
-        items: state.items.filter(item => item.id !== action.payload.id),
+        products: state.products.filter(item => item.id !== action.payload.id),
       };
 
     default:

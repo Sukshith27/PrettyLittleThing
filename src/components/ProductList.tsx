@@ -1,6 +1,6 @@
 // src/components/ProductList.tsx
 import React from 'react';
-import {View, Text, Image, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 import ProductItem from './ProductItem';
 import {RootState} from '../redux/store';
 import {useSelector, useDispatch} from 'react-redux';
@@ -21,8 +21,8 @@ const ProductList: React.FC = () => {
   const renderItem = ({item}: {item: any}) => (
     <ProductItem
       product={item}
-      onQuantityChange={quantity => console.log('=====', item.id, quantity)}
-      // onQuantityChange={quantity => console.log(item.id, quantity), handleQuantityChange(item.id, quantity)}
+      // onQuantityChange={quantity => console.log('=====', item.id, quantity)}
+      onQuantityChange={handleQuantityChange}
     />
   );
 
