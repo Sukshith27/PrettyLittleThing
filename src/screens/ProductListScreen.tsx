@@ -17,9 +17,9 @@ const ProductListScreen: React.FC = () => {
         <Text style={styles.headerText}>PRETTY LITTLE THINGS</Text>
       </View>
       <ProductList />
-      {/* <TouchableOpacity style={styles.addToCartButton} onPress={goToCartScreen}>
+      <TouchableOpacity style={styles.addToCartButton} onPress={goToCartScreen}>
         <Text style={styles.addToCartButtonText}>Go to Cart</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
     </View>
   );
 };
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   addToCartButton: {
-    position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,

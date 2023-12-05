@@ -1,8 +1,5 @@
-// src/components/ProductItem.tsx
 import React, {useState} from 'react';
 import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {addToCart} from '../redux/actions/productActions';
 
 interface ProductItemProps {
   product: {
@@ -12,23 +9,27 @@ interface ProductItemProps {
     img: string;
     colour: string;
   };
-  onPress: () => void;
+  onQuantityChange: (productId: number, quantity: number) => void;
 }
 
-const ProductItem: React.FC<ProductItemProps> = ({product, onPress}) => {
-  const dispatch = useDispatch();
+const ProductItem: React.FC<ProductItemProps> = ({
+  product,
+  onQuantityChange,
+}) => {
   const [quantity, setQuantity] = useState(0);
 
   const handleIncrease = () => {
-    setQuantity(prevQty => prevQty + 1);
+    const newQuantity = quantity + 1;
+    setQuantity(newQuantity);
+    onQuantityChange(product.id, newQuantity);
   };
 
   const handleDecrease = () => {
-    setQuantity(prevQty => (prevQty > 0 ? prevQty - 1 : 0));
-  };
-
-  const handleAddToCart = () => {
-    dispatch(addToCart({...product, quantity}));
+    if (quantity > 0) {
+      const newQuantity = quantity - 1;
+      setQuantity(newQuantity);
+      onQuantityChange(product.id, newQuantity);
+    }
   };
 
   return (
@@ -50,7 +51,6 @@ const ProductItem: React.FC<ProductItemProps> = ({product, onPress}) => {
           <Text style={styles.quantityButtonText}>+</Text>
         </TouchableOpacity>
       </View>
-      {/* Removed Add to Cart Button */}
     </View>
   );
 };

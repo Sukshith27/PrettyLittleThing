@@ -9,7 +9,11 @@ const Stack = createNativeStackNavigator();
 const StackNavigator: React.FC = () => {
   return (
     <Stack.Navigator initialRouteName="ProductList">
-      <Stack.Screen name="ProductList" component={ProductListScreen} />
+      <Stack.Screen
+        name="ProductList"
+        component={ProductListScreen}
+        options={{headerShown: false}}
+      />
       <Stack.Screen name="Cart" component={CartScreen} />
     </Stack.Navigator>
   );

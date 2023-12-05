@@ -24,6 +24,8 @@ const cartReducer = (
   state = initialState,
   action: CartActionTypes,
 ): CartState => {
+  console.log('***', action.type);
+  console.log('***++==', action.payload);
   switch (action.type) {
     case ADD_TO_CART:
       const existingItem = state.items.find(
