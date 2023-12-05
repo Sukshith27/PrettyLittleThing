@@ -1,11 +1,13 @@
 // src/redux/actions/productActions.ts
 import {Dispatch} from 'redux';
 import axios from 'axios';
+import {ADD_TO_CART, CartActionTypes} from '../types/cartTypes';
 
 export interface Product {
   id: number;
   name: string;
   price: number;
+  quantity: number; // Add 'quantity' property to Product interface
 }
 
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
@@ -31,7 +33,6 @@ export const fetchProducts = () => {
       const response = await axios.get(
         'https://my-json-server.typicode.com/benirvingplt/products/products',
       );
-      console.log('****', response.data);
       dispatch({type: FETCH_PRODUCTS_SUCCESS, payload: response.data});
     } catch (error) {
       dispatch({
@@ -41,3 +42,8 @@ export const fetchProducts = () => {
     }
   };
 };
+
+export const addToCart = (product: Product): CartActionTypes => ({
+  type: ADD_TO_CART,
+  payload: product,
+});
